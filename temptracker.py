@@ -1,11 +1,11 @@
-#!/usr/bin/python
+
 class TempTracker:
     def __init__(self):
         self.temperatures = []
         self.tempRecords = 0
-        self.max = 0
-        self.min = 200 ##max assumed
-        self.mean = 0.00  ## using only two arbitrary decimals places to report mean 
+        self.max = None
+        self.min = None ##max assumed
+        self.mean = None  ## using only two arbitrary decimals places to report mean
         self.temp_sum= 0
 
 
@@ -27,15 +27,16 @@ class TempTracker:
         self.temperatures.append(record)
         self.tempRecords+=1
         self.temp_sum+=record
-        if self.max < record:
+        if self.max is None or self.max < record:
             self.max = record
-        if self.min > record:
+        if self.min is None or self.min > record:
             self.min = record
         self.mean = format(self.temp_sum / self.tempRecords, '.2f')
         return
 
         ##returns maximum valid temperature record imputed
     def get_max(self):
+        print("something")
         return self.max
 
         ##returns minimum valid temperature record imputed

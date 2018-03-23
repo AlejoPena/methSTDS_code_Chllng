@@ -1,51 +1,20 @@
 '''#!/usr/bin/python'''
 
-import random
 
-def recoursive_flat(alist, newlist):
-	i=0
-	
-	while i < len(alist):
-		if type(alist[i]) == type([]):
-			
-			recoursive_flat(alist[i], newlist)
-			
-		elif type(alist[i]) == type(1):
-			newlist.append(alist[i])
-			
-		i+=1
-	
-	return 
-
-'''
-def rappend(lisa):
-
-	rando=random.randint(0,1)
-	if rando == 1:
-		lis=[]
-		rappend(lis)
-		lisa.append(lis)
-		lisa.append([])
-		lisa.append(1)
-	else:
-		for i in range(random.randint(1,5)):
-			lisa.append(random.randint(1,99))
-	return
+def flatten_list(lst):
+    if not isinstance(lst, list):
+        return -1
+    else:
+        new_lst = []
+        flatten_recursive_helper(lst, new_lst)
+        return new_lst
 
 
-lista=[1,2,3,[4,5,[]],[{3:5}],8,9]
-listc=[3,4,5,6,6]
-lista.append("a")
-lista.append(listc)
-
-for k in range(50):
-		rappend(lista)
-
-
-#lista=[]
-newlis=[]
-print (lista)
-recoursive_flat(lista, newlis)
-
-
-print (newlis)'''
+def flatten_recursive_helper(lst, new_lst):
+    for item in lst:
+        if not isinstance(item, list):
+            if type(item) == type(1):
+                new_lst.append(item)
+            else:pass
+        else:
+            flatten_recursive_helper(item, new_lst)
